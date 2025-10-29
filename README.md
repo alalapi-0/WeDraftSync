@@ -11,7 +11,7 @@ WeDraftSync 是一个自动将本地文本文件上传为微信公众号草稿�
 ## 安装说明
 1. 请确保已安装 Python 3.9 及以上版本。
 2. 创建虚拟环境并激活（推荐）。
-3. 执行 `pip install -r requirements.txt` 安装所需依赖。
+3. 执行 `pip install -r requirements.txt` 安装所需依赖（包含 `PyYAML` 与 `requests` 等库）。
 
 ## 使用方法
 1. 根据需求修改 `config.yaml` 配置。

@@ -11,6 +11,7 @@ except ModuleNotFoundError:  # pragma: no cover - executed only when PyYAML is m
     yaml = None  # type: ignore[assignment]
 
 from utils.reader import load_articles_from_folder
+from utils.wx_token import get_access_token
 
 
 def _load_config(config_path: Path) -> dict[str, Any]:
@@ -59,6 +60,15 @@ def main() -> None:
     for article in articles:
         preview = article["content"].replace("\n", " ")[:50]
         logging.info("标题: %s | 内容预览: %s", article["title"], preview)
+
+    appid = config.get("wx_appid")
+    appsecret = config.get("wx_appsecret")
+
+    if appid and appsecret:
+        token = get_access_token(str(appid), str(appsecret))
+        print(f"当前 access_token：{token}")
+    else:
+        logging.info("WeChat credentials are not configured; skipping access token retrieval.")
 
 
 if __name__ == "__main__":
