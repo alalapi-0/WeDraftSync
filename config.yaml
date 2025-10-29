@@ -1,0 +1,10 @@
+# config.yaml
+
+wx_appid: "你的公众号AppID"  # 微信公众号的唯一标识，用于接口认证
+wx_appsecret: "你的公众号AppSecret"  # 微信公众号的密钥，与 AppID 配对使用
+
+# 要上传的文本文件所在文件夹（绝对路径或相对路径）
+text_folder: "./articles"  # 保存待上传文本文件的目录路径
+
+# 是否以文件名作为标题
+use_filename_as_title: true  # 若为 true，则自动使用文件名作为草稿标题
