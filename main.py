@@ -11,6 +11,7 @@ except ModuleNotFoundError:  # pragma: no cover - executed only when PyYAML is m
     yaml = None  # type: ignore[assignment]
 
 from utils.reader import load_articles_from_folder
+from utils.uploader import upload_draft
 from utils.wx_token import get_access_token
 
 
@@ -52,6 +53,7 @@ def main() -> None:
     use_title = bool(config.get("use_filename_as_title", True))
 
     articles = load_articles_from_folder(folder, use_title)
+    token = ""
 
     if not articles:
         logging.info("No articles were loaded from folder %s.", folder)
@@ -69,6 +71,12 @@ def main() -> None:
         print(f"当前 access_token：{token}")
     else:
         logging.info("WeChat credentials are not configured; skipping access token retrieval.")
+
+    if token and articles:
+        first = articles[0]
+        media_id = upload_draft(token, first["title"], first["content"])
+        if media_id:
+            print("上传成功，media_id:", media_id)
 
 
 if __name__ == "__main__":
